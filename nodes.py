@@ -15,7 +15,7 @@ class GyroOSC:
         return {
             "required": {
                 "ip_address": ("STRING", {
-                    "multiline": False, #True if you want the field to look like the one on the ClipTextEncode node
+                    "multiline": False,
                     "default": "127.0.0.1"
                 }),
                 "port": ("INT", {"default": "8000"}),
@@ -65,7 +65,7 @@ class GyroOSC:
 
     def setup_osc_server(self, ip, port):
         if self.server_thread and self.server_thread.is_alive():
-            self.server.shutdown()  # Properly shut down the existing server
+            self.server.shutdown()
         self.dispatcher = dispatcher.Dispatcher()
         self.dispatcher.map("/gyrosc/gyro", self.handle_osc_message, "Gyro Data")
         self.server = osc_server.ThreadingOSCUDPServer((ip, port), self.dispatcher)
@@ -99,7 +99,6 @@ NODE_CLASS_MAPPINGS = {
     "GyroOSC": GyroOSC
 }
 
-# A dictionary that contains the friendly/humanly readable titles for the nodes
 NODE_DISPLAY_NAME_MAPPINGS = {
     "GyroOSC": "Gyro OSC"
 }
